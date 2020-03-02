@@ -6,7 +6,7 @@ function tsFormat() {
   return moment().format('YYYY-MM-DD HH:mm:ss.SSS ZZ');
 }
 
-const logger = new (winston.Logger)({
+const logger = winston.createLogger({
   transports: [
     new (winston.transports.Console)({
       timestamp: tsFormat,
@@ -17,9 +17,9 @@ const logger = new (winston.Logger)({
     new (winstonDaily)({
 
       level: 'info',
-      filename: 'Log/logs',
+      filename: 'Log/logs%DATE%.log',
       timestamp: tsFormat,
-      datePattern: '_yyyy-MM-dd.log',
+      datePattern: '_YYYY-MM-DD',
       showlevel: true,
       maxsize: 1000000,
       maxFiles: 5,
@@ -29,9 +29,9 @@ const logger = new (winston.Logger)({
   exceptionHandlers: [
     new (winstonDaily)({
       level: 'info',
-      filename: 'Log/exception',
+      filename: 'Log/logs%DATE%.log',
       timestamp: tsFormat,
-      datePattern: '_yyyy-MM-dd.log',
+      datePattern: '_YYYY-MM-DD',
       showlevel: true,
       maxsize: 1000000,
       maxFiles: 5,
