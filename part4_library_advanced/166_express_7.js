@@ -11,16 +11,18 @@ app.get('/two', (request, response) => {
   response.send('<a href="/one">Street 100</a>');
 });
 
+// http://localhost:5000/three/300
 app.get('/three/:number', (request, response) => {
   const streetNumber = request.params.number;
   response.send(`${streetNumber}Street`);
 });
 
+// http://localhost:5000/four/300
 app.get('/four/:number', (request, response) => {
   const aveNumber = request.params.number;
   response.send(`${aveNumber}Ave`);
 });
 
-app.listen(3000, () => {
-  console.log('Server is running port 3000!');
+app.listen(5000, () => {
+  console.log('Server is running port 5000!');
 });
